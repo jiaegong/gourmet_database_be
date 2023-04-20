@@ -3,24 +3,31 @@ const router = express();
 const { Gourmet } = require('../models/Gourmet');
 
 // 모든 맛집 조회
-router.get('/', async (req, res) => {
-  const gourmetFindAll = await Gourmet.find({});
+router.get('/gourmet', async (req, res) => {
+  const { name, type } = req.query;
 
-  res.json(gourmetFindAll);
+  const filter = {};
+  if (name) filter.name = name;
+  if (type) filter.type = type;
+
+  const gourmetList = await Gourmet.find(filter);
+
+  res.json(gourmetList);
 });
 
 // 특정 맛집 조회
-router.get('/:name', async (req, res) => {
-  const { name } = req.params;
-  const gourmetFindOne = await Gourmet.findOne({ name });
+router.get('/gourmet/:_id', async (req, res) => {
+  const { _id } = req.params;
+  const gourmetFindOne = await Gourmet.findOne({ _id });
 
   res.json(gourmetFindOne);
 });
 
 // 맛집 정보 만들기
-router.post('/', async (req, res) => {
+router.post('/gourmet', async (req, res) => {
   const { name, rating, desc, type } = req.body;
   const createdDate = new Date();
+
   const gourmetCreate = new Gourmet({ name, rating, desc, type, createdDate });
   await gourmetCreate.save();
 
@@ -28,7 +35,7 @@ router.post('/', async (req, res) => {
 });
 
 // 특정 맛집 정보 업데이트
-router.put('/:_id', async (req, res) => {
+router.put('/gourmet/:_id', async (req, res) => {
   const { _id } = req.params;
   const { name, rating, desc, type } = req.body;
 
@@ -38,7 +45,7 @@ router.put('/:_id', async (req, res) => {
 });
 
 // 특정 맛집 삭제
-router.delete('/:_id', async (req, res) => {
+router.delete('/gourmet/:_id', async (req, res) => {
   const { _id } = req.params;
   const gourmetDeleteOne = await Gourmet.deleteOne({ _id });
 
