@@ -1,7 +1,24 @@
 const express = require('express');
 const app = express();
 const port = 5000;
+
 require('dotenv').config();
+
+const cors = require('cors');
+const allowedOrigins = ['http://localhost:3000'];
+
+// CORS
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (allowedOrigins.includes(origin) || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+  })
+);
 
 // DB
 const mongoose = require('mongoose');
@@ -22,5 +39,5 @@ const gourmetRouter = require('./routes/Gourmet');
 app.use('/api', gourmetRouter);
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Server is listening on port ${port}`);
 });
