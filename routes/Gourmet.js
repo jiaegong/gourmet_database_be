@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express();
-const { Gourmet } = require('../models/Gourmet');
+const { Gourmet } = require('../models/gourmet');
 
 // 모든 맛집 조회
 router.get('/gourmet', async (req, res) => {

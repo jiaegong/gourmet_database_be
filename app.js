@@ -35,7 +35,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // Router
-const gourmetRouter = require('./routes/Gourmet');
+const gourmetRouter = require('./routes/gourmet');
 app.use('/api', gourmetRouter);
 
 app.listen(port, () => {
