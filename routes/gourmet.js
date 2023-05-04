@@ -25,10 +25,10 @@ router.get('/gourmet/:_id', async (req, res) => {
 
 // 맛집 정보 만들기
 router.post('/gourmet', async (req, res) => {
-  const { name, rating, desc, type } = req.body;
+  const { name, rating, desc, type, location } = req.body;
   const createdDate = new Date();
 
-  const gourmetCreate = new Gourmet({ name, rating, desc, type, createdDate });
+  const gourmetCreate = new Gourmet({ name, rating, desc, type, location, createdDate });
   await gourmetCreate.save();
 
   res.json(gourmetCreate);
@@ -37,9 +37,9 @@ router.post('/gourmet', async (req, res) => {
 // 특정 맛집 정보 업데이트
 router.put('/gourmet/:_id', async (req, res) => {
   const { _id } = req.params;
-  const { name, rating, desc, type } = req.body;
+  const { name, rating, desc, type, location } = req.body;
 
-  const gourmetUpdateOne = await Gourmet.updateOne({ _id }, { name, rating, desc, type });
+  const gourmetUpdateOne = await Gourmet.updateOne({ _id }, { name, rating, desc, type, location });
 
   res.json(gourmetUpdateOne);
 });
