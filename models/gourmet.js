@@ -12,7 +12,12 @@ const gourmetSchema = mongoose.Schema(
       minlength: 5,
     },
     type: String,
-    location: String,
+    location: {
+      type: {
+        x: Number,
+        y: Number,
+      },
+    },
     createdDate: Date,
   },
   { collection: 'Gourmet' }
