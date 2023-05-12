@@ -20,9 +20,9 @@ const gourmetSchema = mongoose.Schema(
     },
     createdDate: Date,
   },
-  { collection: 'Gourmet' }
+  { collection: 'gourmets' }
 );
 
-const Gourmet = mongoose.model('Gourmet', gourmetSchema);
+const Gourmet = mongoose.model('gourmets', gourmetSchema);
 
 module.exports = { Gourmet };

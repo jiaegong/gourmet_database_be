@@ -28,7 +28,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => console.log('MongoDB Connected...🚀'))
-  .catch((err) => console.log(err));
+  .catch(err => console.log(err));
 
 // body-parser
 app.use(express.urlencoded({ extended: false }));
